@@ -41,7 +41,7 @@
 		}
 		
 		/**
-		 * Requires all files within an array, checking that they exists.
+		 * Requires all files within an array, checking that they exist.
 		 * @param type Array of file paths.
 		 * @return boolean Success.
 		 */

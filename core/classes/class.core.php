@@ -47,12 +47,8 @@
 		 */
 		private static function loadFiles($files) {
 			
-			foreach ($files as $path) {
-				
-				echo '.';
+			foreach ($files as $path)			
 				if (!self::loadFile($path)) return false;
-				
-			}
 			
 			return true;
 			

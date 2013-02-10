@@ -41,18 +41,14 @@
 		}
 		
 		/**
-		 * Requires all files within an array, checking that they exists.
+		 * Requires all files within an array, checking that they exist.
 		 * @param type Array of file paths.
 		 * @return boolean Success.
 		 */
 		private static function loadFiles($files) {
 			
-			foreach ($files as $path) {
-				
-				echo '.';
+			foreach ($files as $path)			
 				if (!self::loadFile($path)) return false;
-				
-			}
 			
 			return true;
 			

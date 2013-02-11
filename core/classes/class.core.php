@@ -49,7 +49,6 @@
 			
 			foreach ($files as $path) {
 				
-				echo '.';
 				if (!self::loadFile($path)) return false;
 				
 			}

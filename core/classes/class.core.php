@@ -59,15 +59,15 @@
 		 * @param string File path.
 		 * @param string Class name (without suffix).
 		 * @param string Class' suffix ('Controller', 'View' or 'Model'). 
-		 * @param array Construct's arguments.
+		 * @param array Construct's arguments (optional).
 		 * @return boolean Success.
 		 */
-		private static function create($path, $name, $type, $args = array()) {
+		private static function create($path, $name, $type, $args = null) {
 			
 			if (!self::loadFile($path)) return false; // Incluyo el fichero o devuelvo false si no existe.
 			$class = new ReflectionClass(ucfirst($name) . $type);
 			
-			if (count($args) && !empty($args[0])) return $class->newInstanceArgs($args);
+			if ($args) return $class->newInstanceArgs(array($args));
 			else return $class->newInstanceArgs();
 			
 		}
@@ -78,9 +78,9 @@
 		 * <em>-View</em> suffix.
 		 * @return object View object or FALSE.
 		 */
-		public static function loadView($name) {
+		public static function loadView($name, $data = array()) {
 			
-			return self::create(VIEWS_DIR . DS . strtolower($name) . '.php', $name, 'View');
+			return self::create(VIEWS_DIR . DS . strtolower($name) . '.php', $name, 'View', $data);
 			
 		}
 		
@@ -102,9 +102,9 @@
 		 * <em>-Model</em> suffix.
 		 * @return object Model object or FALSE.
 		 */
-		public static function loadModel($name) {
+		public static function loadModel($name, $data = array()) {
 			
-			return self::create(MODELS_DIR. DS . strtolower($name) . '.php', $name, 'Model', array($data));
+			return self::create(MODELS_DIR. DS . strtolower($name) . '.php', $name, 'Model', $data);
 			
 		}
 		

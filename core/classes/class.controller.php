@@ -12,9 +12,9 @@
 		 * @param string Model name, lowercase and without the suffix.
 		 * @return object
 		 */
-		protected function model($name) {
+		protected function model($name, $data = null) {
 
-			return Core::loadModel($name);
+			return Core::loadModel($name, $data);
 
 		}
 
@@ -23,9 +23,9 @@
 		 * @param string Model name, lowercase and without the suffix.
 		 * @return object
 		 */
-		protected function view($name) {
+		protected function view($name, $data = null) {
 
-			return Core::loadView($name);
+			return Core::loadView($name, $data);
 			
 		}
 		

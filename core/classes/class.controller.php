@@ -25,7 +25,7 @@
 		 */
 		protected function view($name) {
 
-			return Core::loadView($name);;
+			return Core::loadView($name);
 			
 		}
 		

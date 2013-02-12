@@ -117,7 +117,7 @@
 			ob_start();
 			var_dump($x);
 			$result = ob_get_clean();
-			die("<!DOCTYPE html><html><head><title>[DEBUG]</title></head><body style=\"font-family: monospace, sans-serif;\"><pre>$result</pre></body></html>");
+			die("<code><pre>$result</pre></code>");
 			
 		}
 		

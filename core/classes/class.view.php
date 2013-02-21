@@ -18,7 +18,7 @@
 		 */
 		protected function template($template_file, $data) {
 			
-			return Haanga::Load(TEMPLATES_DIR . DS . $template_file, $data, true);
+			return Haanga::Load($template_file, $data, true);
 			
 		}
 		

@@ -109,19 +109,6 @@
 		}
 		
 		/**
-		 * Stops the execution and displays passed data.
-		 * @param mixed Any object, variable, function result or expression.
-		 */
-		public static function debug($x) {
-			
-			ob_start();
-			var_dump($x);
-			$result = ob_get_clean();
-			die("<!DOCTYPE html><html><head><title>[DEBUG]</title></head><body style=\"font-family: monospace, sans-serif;\"><pre>$result</pre></body></html>");
-			
-		}
-		
-		/**
 		 * Processes configuration files.
 		 */
 		public static function loadConfig() {

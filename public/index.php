@@ -36,5 +36,6 @@
 
 	define('WWW', 1);
 	require '..' . DIRECTORY_SEPARATOR . 'core' . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . 'class.core.php';
+	require '..' . DIRECTORY_SEPARATOR . 'core' . DIRECTORY_SEPARATOR . 'auxfn.php';
 	require '..' . DIRECTORY_SEPARATOR . 'core' . DIRECTORY_SEPARATOR . 'init.php';
 	

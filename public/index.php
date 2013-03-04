@@ -3,7 +3,7 @@
 	/**
 	 * PHP Emeuvecé Framework
 	 * MVC architecture and nothing else.
-	 * Version 0.1.1 BETA 2013-02-07
+	 * Version 0.1.2 BETA 2013-03-04
 	 * 
 	 * Copyright (c) 2013 Oriol del Rio
 	 * 
@@ -27,7 +27,7 @@
 	 * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 	 * 
 	 * @package		PHP Emeuvecé Framework
-	 * @version		0.1.1 BETA
+	 * @version		0.1.2 BETA
 	 * @author		Oriol del Rio
 	 * @link		http://odelrio.com/emeuvece
 	 * @copyright	(c) Oriol del Rio 2013

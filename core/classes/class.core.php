@@ -212,10 +212,10 @@
 		 */
 		public static function loadComponents() {
 			
-			require CLASSES_DIR . DS . 'class.controller.php';
-			require CLASSES_DIR . DS . 'class.view.php';
-			require CLASSES_DIR . DS . 'class.database.php';
-			require CLASSES_DIR . DS . 'class.model.php';
+			require CORE_CLASSES_DIR . DS . 'class.controller.php';
+			require CORE_CLASSES_DIR . DS . 'class.view.php';
+			require CORE_CLASSES_DIR . DS . 'class.database.php';
+			require CORE_CLASSES_DIR . DS . 'class.model.php';
 			
 		}
 		

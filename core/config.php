@@ -16,3 +16,4 @@
 	define('VIEWS_DIR', APP_PATH . DS . 'views');
 	define('TEMPLATES_DIR', APP_PATH . DS . 'templates');
 	define('LOCALE_DIR', APP_PATH . DS . 'locale');
+	define('CLASSES_DIR', APP_PATH . DS . 'classes');

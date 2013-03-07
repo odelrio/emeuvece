@@ -65,7 +65,7 @@ final class Haanga_Compiler_Runtime extends Haanga_Compiler
     {
         $this->do_print($body,
             hexec('Haanga::Load', $details[0], $this->getScopeVariable(),
-            true,
+            TRUE,
             hvar('blocks'))
         );
     }
@@ -75,7 +75,7 @@ final class Haanga_Compiler_Runtime extends Haanga_Compiler
     function expr_call_base_template()
     {
         return hexec('Haanga::Load', $this->subtemplate, 
-            $this->getScopeVariable(), true, hvar('blocks'));
+            $this->getScopeVariable(), TRUE, hvar('blocks'));
     }
     // }}}
 
@@ -99,8 +99,8 @@ final class Haanga_Compiler_Runtime extends Haanga_Compiler
 
         if (!isset($loaded[$name])) {
             $this->prepend_op->comment("Load tag {$name} definition");
-            $this->prepend_op->do_exec('require_once', $tag->getFilePath($name, false));
-            $loaded[$name] = true;
+            $this->prepend_op->do_exec('require_once', $tag->getFilePath($name, FALSE));
+            $loaded[$name] = TRUE;
         }
 
         return $tag->getClassName($name)."::main";
@@ -116,8 +116,8 @@ final class Haanga_Compiler_Runtime extends Haanga_Compiler
 
         if (!isset($loaded[$name])) {
             $this->prepend_op->comment("Load filter {$name} definition");
-            $this->prepend_op->do_exec('require_once', $filter->getFilePath($name, false));
-            $loaded[$name] = true;
+            $this->prepend_op->do_exec('require_once', $filter->getFilePath($name, FALSE));
+            $loaded[$name] = TRUE;
         }
 
         return $filter->getClassName($name)."::main";

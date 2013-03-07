@@ -2,7 +2,7 @@
 
 class Haanga_Extension_Tag_Trans
 {
-    public $is_block = false;
+    public $is_block = FALSE;
 
     static function generator($cmp, $args, $redirect)
     {

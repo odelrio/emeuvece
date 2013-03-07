@@ -50,9 +50,9 @@ class Haanga_Extension_Filter extends Haanga_Extension
         if (!isset($cache[$filter])) {
             $class_name = $this->getClassName($filter);
             if (class_exists($class_name)) {
-                $cache[$filter] = true;
+                $cache[$filter] = TRUE;
             } else {
-                $cache[$filter] = false;
+                $cache[$filter] = FALSE;
             }
         }
 

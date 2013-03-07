@@ -3,7 +3,7 @@
 
 class Haanga_Extension_Tag_Exec
 {
-    public $is_block = false;
+    public $is_block = FALSE;
 
     static function generator($cmp, $args, $assign=NULL)
     {

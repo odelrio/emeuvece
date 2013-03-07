@@ -9,7 +9,7 @@ class Haanga_Extension_Tag_Tryinclude
         }
 
         $code = hcode();
-        $exec = hexec('Haanga::Safe_Load', $args[0], $cmp->getScopeVariable(), true, array());
+        $exec = hexec('Haanga::Safe_Load', $args[0], $cmp->getScopeVariable(), TRUE, array());
 
         $cmp->do_print($code, $exec);
 

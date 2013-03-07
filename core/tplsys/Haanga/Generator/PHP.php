@@ -79,7 +79,7 @@ class Haanga_Generator_PHP
         for ($i=0; $i < $size; $i++) {
             $op = $op_code[$i];
             if (!isset($op['op'])) {
-                throw new Haanga_Compiler_Exception("Invalid \$op_code ".print_r($op, true));
+                throw new Haanga_Compiler_Exception("Invalid \$op_code ".print_r($op, TRUE));
             }
 
             /* echo optimization {{{ */
@@ -96,7 +96,7 @@ class Haanga_Generator_PHP
                         $op[] = $next_op[$e];
                     }
                     $i++;
-                } while(true);
+                } while(TRUE);
             }
             /* }}} */
 
@@ -121,7 +121,7 @@ class Haanga_Generator_PHP
                         $op[] = $next_op[$e];
                     }
                     $i++;
-                } while(true);
+                } while(TRUE);
             }
             /* }}} */
 
@@ -197,7 +197,7 @@ class Haanga_Generator_PHP
      */
     function php_function($op)
     {
-        $code = "function {$op['name']}(\${$this->scopeVariableName}, \$return=false, \$blocks=array())".$this->ident()."{";
+        $code = "function {$op['name']}(\${$this->scopeVariableName}, \$return=FALSE, \$blocks=array())".$this->ident()."{";
         $this->ident++;
         return $code;
     }
@@ -421,10 +421,10 @@ class Haanga_Generator_PHP
             if (is_array($expr)) {
                 $code .= $this->php_generate_stmt(array($expr));
             } else {
-                if ($expr === false) {
-                    $expr = 'false';
-                } else if ($expr === true) {
-                    $expr = 'true';
+                if ($expr === FALSE) {
+                    $expr = 'FALSE';
+                } else if ($expr === TRUE) {
+                    $expr = 'TRUE';
                 }
                 $code .= $expr;
             }
@@ -466,7 +466,7 @@ class Haanga_Generator_PHP
                 continue;
             }
             if (!is_Array($op[$i])) {
-                throw new Haanga_Compiler_Exception("Malformed declaration ".print_r($op, true));
+                throw new Haanga_Compiler_Exception("Malformed declaration ".print_r($op, TRUE));
             }
             $key   = key($op[$i]);
             $value = current($op[$i]); 
@@ -483,7 +483,7 @@ class Haanga_Generator_PHP
                 }
 
                 $value = array('name' => $value, 'args' => $op[$i]['args']);
-                $code .= $this->php_exec($value, false);
+                $code .= $this->php_exec($value, FALSE);
                 $code .= $concat;
                 break;
             case 'key':
@@ -540,7 +540,7 @@ class Haanga_Generator_PHP
                 $code = $value;
                 break;
             default:
-                throw new Exception("Don't know how to declare {$key} = {$value} (".print_r($op, true));
+                throw new Exception("Don't know how to declare {$key} = {$value} (".print_r($op, TRUE));
             }
         }
 
@@ -609,7 +609,7 @@ class Haanga_Generator_PHP
                 if (count($var) == 1) {
                     return $this->php_get_varname($var[0]);
                 } else {
-                    throw new Exception("Invalid variable definition ".print_r($var, true));
+                    throw new Exception("Invalid variable definition ".print_r($var, TRUE));
                 }
             }
             $var_str = $this->php_get_varname($var[0]);
@@ -645,7 +645,7 @@ class Haanga_Generator_PHP
                         /* index is a NULL (do append) */
                         $var_str .= '[]';
                     } else {
-                        throw new Haanga_Compiler_Exception('Unknown variable definition '.print_r($var, true));
+                        throw new Haanga_Compiler_Exception('Unknown variable definition '.print_r($var, TRUE));
                     }
                 }
             }

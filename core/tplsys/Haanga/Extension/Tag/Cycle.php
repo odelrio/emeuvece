@@ -2,7 +2,7 @@
 
 class Haanga_Extension_Tag_Cycle
 {
-    public $is_block = false;
+    public $is_block = FALSE;
 
     static function generator($cmp, $args, $declared)
     {
@@ -22,7 +22,7 @@ class Haanga_Extension_Tag_Cycle
             $def   = 'def_cycle_'.$id; 
         } else {
             if (!$declared) {
-                $code->do_if(hexpr(hexec('isset', hvar($def)), '==', false));
+                $code->do_if(hexpr(hexec('isset', hvar($def)), '==', FALSE));
             }
             $code->decl($def, $args);
             if (!$declared) {
@@ -30,8 +30,8 @@ class Haanga_Extension_Tag_Cycle
             }
         }
 
-        /* isset($var) == false */
-        $expr = hexpr(hexec('isset', hvar($index)), '==', false);
+        /* isset($var) == FALSE */
+        $expr = hexpr(hexec('isset', hvar($index)), '==', FALSE);
         $inc  = hexpr(hexpr(hexpr(hvar($index), '+', 1)), '%', hexec('count', hvar($def)));
         
 

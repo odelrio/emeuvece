@@ -354,13 +354,15 @@ params(A) ::= var_or_string(B).                       { A = array(B); }
 /* variable or string (used on params) */
 var_or_string(A) ::= varname(B).    { A = array('var' => B); }  
 var_or_string(A) ::= number(B).  { A = array('number' => B); }  
-var_or_string(A) ::= T_true|T_false(B).   { A = trim(@B); }  
+var_or_string(A) ::= T_TRUE|T_FALSE(B).   { A = trim(@B); }  
 var_or_string(A) ::= string(B).     { A = array('string' => B); }
 
 /* filtered variables */
-fvar_or_string(A) ::= filtered_var(B).  { A = array('var_filter' => B); }  
+fvar_or_string(A) ::= filtered_var(B).  {
+    A = array('var_filter' => B); 
+}  
 fvar_or_string(A) ::= number(B).     { A = array('number' => B); }  
-fvar_or_string(A) ::= T_true|T_false(B).   { A = trim(@B); }  
+fvar_or_string(A) ::= T_TRUE|T_FALSE(B).   { A = trim(@B); }  
 fvar_or_string(A) ::= string(B).        { A = array('string' => B); }
 
 /* */
@@ -383,6 +385,16 @@ expr(A) ::= T_LPARENT expr(B) T_RPARENT. { A = array('op_expr' => 'expr', B); }
 expr(A) ::= fvar_or_string(B). { A = B; }
 
 /* Variable name */
+
+varname(A) ::= varpart(B) T_LPARENT T_RPARENT. {
+    A = hexec(B)->getArray();
+}
+
+varname(A) ::= varpart(B) T_LPARENT params(X) T_RPARENT. {
+    $tmp  = hcode();
+    $args = array_merge(array(B),  X);
+    A =  call_user_func_array(array($tmp, 'exec'), $args);
+}
 
 varname(A) ::= varpart(B). { A = current($this->compiler->generate_variable_name(B, false)); }
 

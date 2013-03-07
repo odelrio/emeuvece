@@ -50,10 +50,10 @@ class Haanga_Compiler_Tokenizer
     /* they are case sensitive and sorted! */
     static $keywords = array(
         'AND'           => HG_Parser::T_AND,
-        'false'         => HG_Parser::T_false,
+        'FALSE'         => HG_Parser::T_FALSE,
         'NOT'           => HG_Parser::T_NOT,
         'OR'            => HG_Parser::T_OR,
-        'true'          => HG_Parser::T_true,
+        'TRUE'          => HG_Parser::T_TRUE,
         '_('            => HG_Parser::T_INTL,
         'as'            => HG_Parser::T_AS,
         'autoescape'    => HG_Parser::T_AUTOESCAPE,
@@ -174,7 +174,7 @@ class Haanga_Compiler_Tokenizer
             if ($this->status != self::IN_NONE && $this->status != self::IN_HTML) {
                 $this->Error("Unexpected end");
             }
-            return false;
+            return FALSE;
         }
 
         if ($this->status == self::IN_NONE) {
@@ -198,7 +198,7 @@ class Haanga_Compiler_Tokenizer
                     case HG_Parser::T_COMMENT:
                         $zdata = & $this->data;
 
-                        if (($pos=strpos($zdata, self::$end_comment, $i)) === false) {
+                        if (($pos=strpos($zdata, self::$end_comment, $i)) === FALSE) {
                             $this->error("unexpected end");
                         }
 
@@ -211,7 +211,7 @@ class Haanga_Compiler_Tokenizer
                         $this->echoFirstToken = false;
                         break;
                     }
-                    return true;
+                    return TRUE;
                 }
             }
 
@@ -233,10 +233,10 @@ class Haanga_Compiler_Tokenizer
             if ($this->status != self::IN_NONE && $this->status != self::IN_HTML) {
                 $this->Error("Unexpected end");
             }
-            return false;
+            return FALSE;
         }
 
-        return true;
+        return TRUE;
 
     }
 
@@ -247,7 +247,7 @@ class Haanga_Compiler_Tokenizer
 
         foreach ($this->open_tags as $value => $status) {
             $pos = strpos($data, $value, $i);
-            if ($pos === false) {
+            if ($pos === FALSE) {
                 continue;
             }
             if (!isset($lowest_pos) || $lowest_pos > $pos) {
@@ -319,7 +319,7 @@ class Haanga_Compiler_Tokenizer
             case '0': case '1': case '2': case '3': case '4':
             case '5': case '6': case '7': case '8': case '9': 
                 $value = "";
-                $dot   = false;
+                $dot   = FALSE;
                 for ($e=0; $i < $this->length; ++$e, ++$i) {
                     switch ($data[$i]) {
                     case '0': case '1': case '2': case '3': case '4': 
@@ -329,7 +329,7 @@ class Haanga_Compiler_Tokenizer
                     case '.':
                         if (!$dot) {
                             $value .= ".";
-                            $dot    = true;
+                            $dot    = TRUE;
                         } else {
                             $this->error("Invalid number");
                         }
@@ -373,7 +373,7 @@ class Haanga_Compiler_Tokenizer
             default: 
                 if (!$this->getTag() && !$this->getOperator()) {
                     $alpha = $this->getAlpha();
-                    if ($alpha === false) {
+                    if ($alpha === FALSE) {
                         $this->error("error: unexpected ".substr($data, $i));
                     }
                     static $tag=NULL;
@@ -420,7 +420,7 @@ class Haanga_Compiler_Tokenizer
                 $this->token = $token;
                 $this->value = $value;
                 $i += $len;
-                return true;
+                return TRUE;
             }
         }
 
@@ -434,13 +434,13 @@ class Haanga_Compiler_Tokenizer
                 break 2;
             case 0: // match 
                 if (isset($data[$len]) && !$this->is_token_end($data[$len])) {
-                    /* probably a variable name truefoo (and not true) */
+                    /* probably a variable name TRUEfoo (and not TRUE) */
                     continue;
                 }
                 $this->token = $token;
                 $this->value = $value;
                 $i += $len;
-                return true;
+                return TRUE;
             }
         }
 
@@ -448,10 +448,10 @@ class Haanga_Compiler_Tokenizer
         if (strncmp($data, "end", 3) == 0) {
             $this->value = $this->getAlpha();
             $this->token = HG_Parser::T_CUSTOM_END;
-            return true;
+            return TRUE;
         }
         
-        return false;
+        return FALSE;
     }
 
     function Error($text)
@@ -481,7 +481,7 @@ class Haanga_Compiler_Tokenizer
                 $this->token = $token;
                 $this->value = $value;
                 $i += $len;
-                return true;
+                return TRUE;
             }
         }
 
@@ -491,20 +491,20 @@ class Haanga_Compiler_Tokenizer
                 $this->token = $token;
                 $this->value = $value;
                 $i += 1;
-                return true;
+                return TRUE;
             } else if ($value > $data) {
                 break;
             }
         }
 
 
-        return false;
+        return FALSE;
     }
 
 
     /**
-     *  Return true if $letter is a valid "token_end". We use token_end
-     *  to avoid confuse T_ALPHA truefoo with true and foo (T_ALPHA)
+     *  Return TRUE if $letter is a valid "token_end". We use token_end
+     *  to avoid confuse T_ALPHA TRUEfoo with TRUE and foo (T_ALPHA)
      *
      *  @param string $letter
      *
@@ -529,7 +529,7 @@ class Haanga_Compiler_Tokenizer
 
         if (  !('a' <= $data[$i] && 'z' >= $data[$i]) &&
             !('A' <= $data[$i] && 'Z' >= $data[$i]) && $data[$i] != '_') {
-            return false;
+            return FALSE;
         }
 
         $value  = "";

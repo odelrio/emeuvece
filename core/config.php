@@ -9,7 +9,7 @@
 	define('DS', DIRECTORY_SEPARATOR);
 	define('CORE_PATH', __DIR__);
 	define('APP_PATH', str_replace(DS . basename(__DIR__), '', __DIR__) . DS . 'app');
-	define('CLASSES_DIR', CORE_PATH . DS . 'classes');
+	define('CORE_CLASSES_DIR', CORE_PATH . DS . 'classes');
 	define('TEMPLATE_SYSTEM_DIR', CORE_PATH . DS . 'tplsys');
 	define('CONTROLLERS_DIR', APP_PATH . DS . 'controllers');
 	define('MODELS_DIR', APP_PATH . DS . 'models');

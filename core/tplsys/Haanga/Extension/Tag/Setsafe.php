@@ -2,7 +2,7 @@
 
 class Haanga_Extension_Tag_SetSafe
 {
-    public $is_block = false;
+    public $is_block = FALSE;
 
     static function generator($cmp, $args)
     {

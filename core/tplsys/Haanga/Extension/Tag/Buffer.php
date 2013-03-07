@@ -2,7 +2,7 @@
 
 class Haanga_Extension_Tag_Buffer
 {
-    public $is_block = true;
+    public $is_block = TRUE;
 
     static function generator($cmp, $args, $redirected)
     {
@@ -15,7 +15,7 @@ class Haanga_Extension_Tag_Buffer
         /* redirect buffer to $args[1] */
         $code->decl($args[1], $args[0]);
         /* telling to Haanga that we're handling the output */
-        $code->doesPrint = true;
+        $code->doesPrint = TRUE;
 
         /* $args[1] is already safe (it might have HTML) */
         $cmp->set_safe($args[1]['var']);

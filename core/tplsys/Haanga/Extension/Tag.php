@@ -49,7 +49,7 @@ class Haanga_Extension_Tag extends Haanga_Extension
      *
      *  @param string $tag  Tag to check
      *
-     *  @return int|bool HG_Parser::T_CUSTOM_TAG, HG_Parser::T_CUSTOM_TAG or false
+     *  @return int|bool HG_Parser::T_CUSTOM_TAG, HG_Parser::T_CUSTOM_TAG or FALSE
      */
     final function isValid($tag)
     {
@@ -60,14 +60,14 @@ class Haanga_Extension_Tag extends Haanga_Extension
             $class_name = $this->getClassName($tag);
             if (class_exists($class_name)) {
                 $properties = get_class_vars($class_name);
-                $is_block   = false;
+                $is_block   = FALSE;
                 if (isset($properties['is_block'])) {
                     $is_block = (bool)$properties['is_block'];
                 }
                 $cache[$tag] = $is_block ? HG_Parser::T_CUSTOM_BLOCK : HG_Parser::T_CUSTOM_TAG;
             }
             if (!isset($cache[$tag])) {
-                $cache[$tag] = false;
+                $cache[$tag] = FALSE;
             }
         }
 

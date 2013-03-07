@@ -2,7 +2,7 @@
 
 class Haanga_Extension_Filter_Length
 {
-    public $is_safe = true; /* a number if safe */
+    public $is_safe = TRUE; /* a number if safe */
     static function generator($compiler, $args)
     {
         $count  = hexec('count', $args[0]);

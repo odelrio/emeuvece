@@ -64,7 +64,7 @@
 		 */
 		private static function create($path, $name, $type, $args = array()) {
 			
-			if (!self::loadFile($path)) return false; // Incluyo el fichero o devuelvo false si no existe.
+			if (!self::loadFile($path)) return false;
 			$class = new ReflectionClass(ucfirst($name) . $type);
 			
 			if (count($args) && !empty($args[0])) return $class->newInstanceArgs($args);
@@ -104,7 +104,7 @@
 		 */
 		public static function loadModel($name) {
 			
-			return self::create(MODELS_DIR. DS . strtolower($name) . '.php', $name, 'Model', array($data));
+			return self::create(MODELS_DIR. DS . strtolower($name) . '.php', $name, 'Model');
 			
 		}
 		
@@ -244,16 +244,16 @@
 
 							} else $controller->$method(); // Call without methods.
 
-						} else die('Error: no ' . $method . ' method found in ' . $uri[0] . ' controller.');
+						} else self::displayError('no ' . $method . ' method found in ' . $uri[0] . ' controller.');
 
 					} else {
 
 						if (method_exists($controller, 'index')) $controller->index();
-						else die('Error: no index method found in ' . $uri[0] . ' controller.');
+						else self::displayError('no index method found in ' . $uri[0] . ' controller.');
 
 					}
 
-				} else die('Error: no ' . $uri[0] . ' controller found.');
+				} else self::displayError('no ' . $uri[0] . ' controller found.');
 
 			} else { // Root.
 
@@ -262,9 +262,9 @@
 				if ($controller) {
 
 					if (method_exists($controller, 'index')) $controller->index();
-					else die('Error: no index method found in the default controller.');
+					else self::displayError('no index method found in the default controller.');
 
-				} else die('Error: unable to load the default controller. Please verify the configuration file.');
+				} else self::displayError('unable to load the default controller. Please verify the configuration file.');
 
 			}
 			
@@ -300,6 +300,20 @@
 		private static function languageExists($lang) {
 			
 			return array_key_exists($lang, self::$_languages);
+			
+		}
+		
+		public static function displayError($msg, $die = true) {
+			
+			echo "hola";
+			
+			if (!APP_PRODUCTION) {
+				
+				echo "<br /><b>Error</b>: $msg<br />";
+				
+			}
+			
+			if ($die) die();
 			
 		}
 

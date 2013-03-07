@@ -12,7 +12,7 @@ class Haanga_Extension_Tag_FirstOf
         $args  = array_reverse($args);
         for ($i=0; $i < $count; $i++) {
             if (isset($expr) && Haanga_AST::is_var($args[$i])) {
-                $expr = hexpr_cond(hexpr(hexec('empty', $args[$i]),'==', false), $args[$i], $expr);
+                $expr = hexpr_cond(hexpr(hexec('empty', $args[$i]),'==', FALSE), $args[$i], $expr);
             } else {
                 $expr = $args[$i];
             }

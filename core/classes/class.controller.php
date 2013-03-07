@@ -8,24 +8,66 @@
 	abstract class Controller {
 
 		/**
-		 * Returns a model object.
+		 * Calls a model.
 		 * @param string Model name, lowercase and without the suffix.
-		 * @return object
+		 * @param string Method name (optional).
+		 * @param array Ordered array with method arguments (optional).
+		 * @return boolean Success.
 		 */
-		protected function model($name) {
+		protected function model($name, $method = null, $data = array()) {
 
-			return Core::loadModel($name);
+			$model = Core::loadModel($name);
+			
+			if (!$model) {
+				
+				Core::displayError("$name view does not exist.");
+				return false;
+				
+			}
+			
+			if (method_exists($model, $method)) {
+				
+				call_user_func_array(array($model, $method), $data);
+				
+			} elseif (method_exists($model, "index")) {
+				
+				$model->index($data);
+				
+			} else return false;
+			
+			return true;
 
 		}
 
 		/**
-		 * Returns a model object.
-		 * @param string Model name, lowercase and without the suffix.
-		 * @return object
+		 * Calls a view.
+		 * @param string View name, lowercase and without the suffix.
+		 * @param string Method name (optional).
+		 * @param array Ordered array with method arguments (optional).
+		 * @return boolean Success.
 		 */
-		protected function view($name) {
+		protected function view($name, $method = null, $data = array()) {
 
-			return Core::loadView($name);
+			$view = Core::loadView($name);
+			
+			if (!$view) {
+				
+				Core::displayError("$name view does not exist.");
+				return false;
+				
+			}
+			
+			if (method_exists($view, $method)) {
+				
+				call_user_func_array(array($view, $method), $data);
+				
+			} elseif (method_exists($view, "index")) {
+				
+				$view->index($data);
+				
+			} else return false;
+			
+			return true;
 			
 		}
 		

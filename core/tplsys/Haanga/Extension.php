@@ -62,7 +62,7 @@ Abstract Class Haanga_Extension
     abstract function isValid($name);
     abstract function getClassName($name);
 
-    final function getFilePath($name, $rel=true, $pref=NULL)
+    final function getFilePath($name, $rel=TRUE, $pref=NULL)
     {
         try {
             $reflection = new ReflectionClass($this->getClassName($name));
@@ -93,7 +93,7 @@ Abstract Class Haanga_Extension
         }
         $zclass     = $this->getClassName($name);
         $properties = get_class_vars($zclass);
-        return isset($properties['is_safe']) ? $properties['is_safe'] : false;
+        return isset($properties['is_safe']) ? $properties['is_safe'] : FALSE;
     }
 
     // generator(string $name, Haanga_Compiler $compiler, Array $args) {{{
@@ -121,7 +121,7 @@ Abstract Class Haanga_Extension
 
     // hasGenerator(string $name) {{{
     /** 
-     *  Return true if the extension has a  
+     *  Return TRUE if the extension has a  
      *  generator method
      *
      *  @param string $name Extension name

@@ -8,7 +8,7 @@
 class Haanga_Extension_Tag_Spaceless
 {
     /* This tag is a block */
-    public $is_block  = true;
+    public $is_block  = TRUE;
 
     /**
      *  main() {{{

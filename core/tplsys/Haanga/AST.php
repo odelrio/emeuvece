@@ -45,7 +45,7 @@ class Haanga_AST
 {
     public $stack = array();
     public $current = array();
-    public $doesPrint = false;
+    public $doesPrint = FALSE;
 
 
     // getLast() {{{
@@ -69,7 +69,7 @@ class Haanga_AST
     static protected function check_type($obj, $type)
     {
         if (is_string($obj)) {
-            return false;
+            return FALSE;
         }
         if (is_object($obj)) {
             $obj = $obj->getArray();
@@ -203,7 +203,7 @@ class Haanga_AST
         if (isset($this->current[$property])) {
             return $this->current[$property];
         }
-        return false;
+        return FALSE;
     }
 
     static function fromArrayGetAST($obj)
@@ -221,7 +221,7 @@ class Haanga_AST
         }
     }
 
-    static function getValue($obj, &$value, $get_all=false)
+    static function getValue($obj, &$value, $get_all=FALSE)
     {
         $class = __CLASS__;
 
@@ -231,10 +231,10 @@ class Haanga_AST
             $value = self::str($obj);
         } else if (is_numeric($obj) or $obj === 0) {
             $value = self::num($obj);
-        } else if ($obj === false) {
-            $value = array('expr' => false);
-        } else if ($obj === true) {
-            $value = array('expr' => true);
+        } else if ($obj === FALSE) {
+            $value = array('expr' => FALSE);
+        } else if ($obj === TRUE) {
+            $value = array('expr' => TRUE);
         } else if (is_array($obj)) {
             foreach (array('expr_cond', 'op_expr', 'exec', 'var', 'string', 'number', 'constant') as $type) {
                 if (isset($obj[$type])) {
@@ -260,7 +260,7 @@ class Haanga_AST
         }
     }
 
-    function getArray($get_all=false)
+    function getArray($get_all=FALSE)
     {
         $this->end();
         if ($get_all) {
@@ -280,7 +280,7 @@ class Haanga_AST
         );
 
         $this->stack[] = $def;
-        $this->stack   = array_merge($this->stack, $body->getArray(true));
+        $this->stack   = array_merge($this->stack, $body->getArray(TRUE));
         $this->stack[] = array('op' => 'end_for');
 
         return $this;
@@ -309,7 +309,7 @@ class Haanga_AST
             $def['key'] = $key;
         }
         $this->stack[] = $def;
-        $this->stack   = array_merge($this->stack, $body->getArray(true));
+        $this->stack   = array_merge($this->stack, $body->getArray(TRUE));
         $this->stack[] = array('op' => 'end_foreach');
 
         return $this;
@@ -365,10 +365,10 @@ class Haanga_AST
     function expr_cond($expr, $if_true, $if_false)
     {
         $this->getValue($expr, $vExpr);
-        $this->getValue($if_true, $vIftrue);
-        $this->getValue($if_false, $vIffalse);
+        $this->getValue($if_true, $vIfTrue);
+        $this->getValue($if_false, $vIfFalse);
 
-        $this->current = array('expr_cond' => $vExpr, 'true' => $vIftrue, 'false' => $vIffalse);
+        $this->current = array('expr_cond' => $vExpr, 'true' => $vIfTrue, 'false' => $vIfFalse);
 
         return $this;
     }

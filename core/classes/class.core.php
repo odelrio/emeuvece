@@ -307,12 +307,7 @@
 			
 			echo "hola";
 			
-			if (!APP_PRODUCTION) {
-				
-				echo "<br /><b>Error</b>: $msg<br />";
-				
-			}
-			
+			if (!APP_PRODUCTION) echo "<br /><b>Error</b>: $msg<br />";
 			if ($die) die();
 			
 		}

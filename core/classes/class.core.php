@@ -305,8 +305,6 @@
 		
 		public static function displayError($msg, $die = true) {
 			
-			echo "hola";
-			
 			if (!APP_PRODUCTION) echo "<br /><b>Error</b>: $msg<br />";
 			if ($die) die();
 			
